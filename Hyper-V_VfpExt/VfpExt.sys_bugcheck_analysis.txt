@@ -1,0 +1,158 @@
+KDTARGET: Refreshing KD connection
+
+*** Fatal System Error: 0x0000003b
+                       (0x00000000C0000005,0xFFFFF805878346EE,0xFFFFFA0B9735AA60,0x0000000000000000)
+
+Break instruction exception - code 80000003 (first chance)
+For analysis of this file, run !analyze -v
+nt!DbgBreakPointWithStatus:
+fffff805`817fd620 cc                      int     3
+
+kd> !analyze -v
+*******************************************************************************
+*                                                                             *
+*                        Bugcheck Analysis                                    *
+*                                                                             *
+*******************************************************************************
+
+SYSTEM_SERVICE_EXCEPTION (3b)
+An exception happened while executing a system service routine.
+Arguments:
+Arg1: 00000000c0000005, Exception code that caused the bugcheck
+Arg2: fffff805878346ee, Address of the instruction which caused the bugcheck
+Arg3: fffffa0b9735aa60, Address of the context record for the exception that caused the bugcheck
+Arg4: 0000000000000000, zero.
+
+Debugging Details:
+------------------
+
+
+
+Press ctrl-c (cdb, kd, ntsd) or ctrl-break (windbg) to abort symbol loads that take too long.
+Run !sym noisy before .reload to track down problems loading symbols.
+
+
+KEY_VALUES_STRING: 1
+
+    Key  : Analysis.CPU.Sec
+    Value: 5
+
+    Key  : Analysis.DebugAnalysisProvider.CPP
+    Value: Create: 8007007e on LAPTOP-MM2MIQK1
+
+    Key  : Analysis.DebugData
+    Value: CreateObject
+
+    Key  : Analysis.DebugModel
+    Value: CreateObject
+
+    Key  : Analysis.Elapsed.Sec
+    Value: 10
+
+    Key  : Analysis.Memory.CommitPeak.Mb
+    Value: 68
+
+    Key  : Analysis.System
+    Value: CreateObject
+
+
+BUGCHECK_CODE:  3b
+
+BUGCHECK_P1: c0000005
+
+BUGCHECK_P2: fffff805878346ee
+
+BUGCHECK_P3: fffffa0b9735aa60
+
+BUGCHECK_P4: 0
+
+CONTEXT:  fffffa0b9735aa60 -- (.cxr 0xfffffa0b9735aa60)
+rax=0000000000000000 rbx=0000000000000010 rcx=0000000000000010
+rdx=0000000000000080 rsi=0000000000000000 rdi=0000000000000100
+rip=fffff805878346ee rsp=fffffa0b9735b468 rbp=fffffa0b9735b5f0
+ r8=0000000000000080  r9=fffffa0b9735b4a8 r10=0000000000000000
+r11=fffffa0b9735b4d0 r12=0000000000000000 r13=ffff9382e21692b0
+r14=fffffa0b9735b59c r15=fffffa0b9735b598
+iopl=0         nv up ei pl nz na pe nc
+cs=0010  ss=0018  ds=002b  es=002b  fs=0053  gs=002b             efl=00010202
+vfpext!RtlStringCbLengthW+0x22:
+fffff805`878346ee 66443911                cmp     word ptr [rcx],r10w ds:002b:00000000`00000010=????
+Resetting default scope
+
+PROCESS_NAME:  python.exe
+
+STACK_TEXT:  
+fffffa0b`9735b468 fffff805`87836d2f : 00000000`00000000 fffffa0b`9735b590 00000000`00000000 00000000`00000000 : vfpext!RtlStringCbLengthW+0x22
+fffffa0b`9735b470 fffff805`878397bb : 00000000`00000000 00000000`00000000 fffffa0b`9735b590 ffff9382`e53ef020 : vfpext!SxInitUnicodeStringSafe+0x33
+fffffa0b`9735b4a0 fffff805`87848472 : ffff9382`dd4185c0 00000000`00000000 00000000`00000000 00000000`00000000 : vfpext!SxStartDeviceIoControl+0x67
+fffffa0b`9735b4f0 fffff805`86057d40 : ffff9382`dd4185c0 fffff805`86133048 ffff9382`dd418470 ffff9382`e21692b0 : vfpext!VfpDeviceIoControl+0xf2
+fffffa0b`9735b7b0 fffff805`81652f55 : ffff9382`e21692b0 00000000`00000002 00000000`00000001 ffff9382`e35268b0 : ndis!ndisDummyIrpHandler+0x100
+fffffa0b`9735b800 fffff805`819fd518 : fffffa0b`9735bb80 ffff9382`e21692b0 00000000`00000001 ffff9382`00000000 : nt!IofCallDriver+0x55
+fffffa0b`9735b840 fffff805`819fcde5 : 00000000`00000000 fffffa0b`9735bb80 00000000`00000000 fffffa0b`9735bb80 : nt!IopSynchronousServiceTail+0x1a8
+fffffa0b`9735b8e0 fffff805`819fc7e6 : 00000000`00000000 00000000`00000000 00000000`00000000 00000000`00000000 : nt!IopXxxControlFile+0x5e5
+fffffa0b`9735ba20 fffff805`818071b5 : 00000000`00000000 00000000`00000000 00000000`00000000 00000000`00000000 : nt!NtDeviceIoControlFile+0x56
+fffffa0b`9735ba90 00007ffb`d818c094 : 00007ffb`d59a396b 00000000`007ef110 00000000`00000000 00000000`00000000 : nt!KiSystemServiceCopyEnd+0x25
+00000000`007ef048 00007ffb`d59a396b : 00000000`007ef110 00000000`00000000 00000000`00000000 000026aa`b721499f : 0x00007ffb`d818c094
+00000000`007ef050 00000000`007ef110 : 00000000`00000000 00000000`00000000 000026aa`b721499f 00000000`007ef0a0 : 0x00007ffb`d59a396b
+00000000`007ef058 00000000`00000000 : 00000000`00000000 000026aa`b721499f 00000000`007ef0a0 00007ffb`00043073 : 0x7ef110
+
+
+SYMBOL_NAME:  vfpext!RtlStringCbLengthW+22
+
+MODULE_NAME: vfpext
+
+IMAGE_NAME:  vfpext.sys
+
+STACK_COMMAND:  .cxr 0xfffffa0b9735aa60 ; kb
+
+BUCKET_ID_FUNC_OFFSET:  22
+
+FAILURE_BUCKET_ID:  0x3B_c0000005_vfpext!RtlStringCbLengthW
+
+OS_VERSION:  10.0.19041.1
+
+BUILDLAB_STR:  vb_release
+
+OSPLATFORM_TYPE:  x64
+
+OSNAME:  Windows 10
+
+FAILURE_ID_HASH:  {7567b580-8cf8-7a71-0b53-f58f885d016a}
+
+Followup:     MachineOwner
+---------
+
+kd> .cxr 0xfffffa0b9735aa60 ; kb
+rax=0000000000000000 rbx=0000000000000010 rcx=0000000000000010
+rdx=0000000000000080 rsi=0000000000000000 rdi=0000000000000100
+rip=fffff805878346ee rsp=fffffa0b9735b468 rbp=fffffa0b9735b5f0
+ r8=0000000000000080  r9=fffffa0b9735b4a8 r10=0000000000000000
+r11=fffffa0b9735b4d0 r12=0000000000000000 r13=ffff9382e21692b0
+r14=fffffa0b9735b59c r15=fffffa0b9735b598
+iopl=0         nv up ei pl nz na pe nc
+cs=0010  ss=0018  ds=002b  es=002b  fs=0053  gs=002b             efl=00010202
+vfpext!RtlStringCbLengthW+0x22:
+fffff805`878346ee 66443911                cmp     word ptr [rcx],r10w ds:002b:00000000`00000010=????
+  *** Stack trace for last set context - .thread/.cxr resets it
+RetAddr           : Args to Child                                                           : Call Site
+fffff805`87836d2f : 00000000`00000000 fffffa0b`9735b590 00000000`00000000 00000000`00000000 : vfpext!RtlStringCbLengthW+0x22
+fffff805`878397bb : 00000000`00000000 00000000`00000000 fffffa0b`9735b590 ffff9382`e53ef020 : vfpext!SxInitUnicodeStringSafe+0x33
+fffff805`87848472 : ffff9382`dd4185c0 00000000`00000000 00000000`00000000 00000000`00000000 : vfpext!SxStartDeviceIoControl+0x67
+fffff805`86057d40 : ffff9382`dd4185c0 fffff805`86133048 ffff9382`dd418470 ffff9382`e21692b0 : vfpext!VfpDeviceIoControl+0xf2
+fffff805`81652f55 : ffff9382`e21692b0 00000000`00000002 00000000`00000001 ffff9382`e35268b0 : ndis!ndisDummyIrpHandler+0x100
+fffff805`819fd518 : fffffa0b`9735bb80 ffff9382`e21692b0 00000000`00000001 ffff9382`00000000 : nt!IofCallDriver+0x55
+fffff805`819fcde5 : 00000000`00000000 fffffa0b`9735bb80 00000000`00000000 fffffa0b`9735bb80 : nt!IopSynchronousServiceTail+0x1a8
+fffff805`819fc7e6 : 00000000`00000000 00000000`00000000 00000000`00000000 00000000`00000000 : nt!IopXxxControlFile+0x5e5
+fffff805`818071b5 : 00000000`00000000 00000000`00000000 00000000`00000000 00000000`00000000 : nt!NtDeviceIoControlFile+0x56
+00007ffb`d818c094 : 00007ffb`d59a396b 00000000`007ef110 00000000`00000000 00000000`00000000 : nt!KiSystemServiceCopyEnd+0x25
+00007ffb`d59a396b : 00000000`007ef110 00000000`00000000 00000000`00000000 000026aa`b721499f : 0x00007ffb`d818c094
+00000000`007ef110 : 00000000`00000000 00000000`00000000 000026aa`b721499f 00000000`007ef0a0 : 0x00007ffb`d59a396b
+00000000`00000000 : 00000000`00000000 000026aa`b721499f 00000000`007ef0a0 00007ffb`00043073 : 0x7ef110
+
+
+*** Fatal System Error: 0x0000003b
+                       (0x00000000C0000005,0xFFFFF804210946EE,0xFFFF84805BA36A60,0x0000000000000000)
+
+Break instruction exception - code 80000003 (first chance)
+nt!DbgBreakPointWithStatus:
+fffff804`1cdfd620 cc                      int     3
