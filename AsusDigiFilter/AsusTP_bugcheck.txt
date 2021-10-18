@@ -1,0 +1,155 @@
+*** Fatal System Error: 0x00000139
+                       (0x000000000000001D,0xFFFF9509884DB3B0,0xFFFF9509884DB308,0x0000000000000000)
+
+Break instruction exception - code 80000003 (first chance)
+
+A fatal system error has occurred.
+Debugger entered on first try; Bugcheck callbacks have not been invoked.
+
+A fatal system error has occurred.
+
+nt!DbgBreakPointWithStatus:
+fffff800`493ff060 cc              int     3
+4: kd> !analyze -v
+Connected to Windows 10 19041 x64 target at (Mon Oct 11 18:24:30.257 2021 (UTC + 2:00)), ptr64 TRUE
+Loading Kernel Symbols
+...............................................................
+................................................................
+................................................................
+.........................................
+Loading User Symbols
+
+Loading unloaded module list
+...............Unable to enumerate user-mode unloaded modules, Win32 error 0n30
+*******************************************************************************
+*                                                                             *
+*                        Bugcheck Analysis                                    *
+*                                                                             *
+*******************************************************************************
+
+KERNEL_SECURITY_CHECK_FAILURE (139)
+A kernel component has corrupted a critical data structure.  The corruption
+could potentially allow a malicious user to gain control of this machine.
+Arguments:
+Arg1: 000000000000001d, Type of memory safety violation
+Arg2: ffff9509884db3b0, Address of the trap frame for the exception that caused the bugcheck
+Arg3: ffff9509884db308, Address of the exception record for the exception that caused the bugcheck
+Arg4: 0000000000000000, Reserved
+
+Debugging Details:
+------------------
+
+
+KEY_VALUES_STRING: 1
+
+    Key  : Analysis.CPU.Sec
+    Value: 2
+
+    Key  : Analysis.DebugAnalysisProvider.CPP
+    Value: Create: 8007007e on LAPTOP-MM2MIQK1
+
+    Key  : Analysis.DebugData
+    Value: CreateObject
+
+    Key  : Analysis.DebugModel
+    Value: CreateObject
+
+    Key  : Analysis.Elapsed.Sec
+    Value: 2
+
+    Key  : Analysis.Memory.CommitPeak.Mb
+    Value: 74
+
+    Key  : Analysis.System
+    Value: CreateObject
+
+
+BUGCHECK_CODE:  139
+
+BUGCHECK_P1: 1d
+
+BUGCHECK_P2: ffff9509884db3b0
+
+BUGCHECK_P3: ffff9509884db308
+
+BUGCHECK_P4: 0
+
+TRAP_FRAME:  ffff9509884db3b0 -- (.trap 0xffff9509884db3b0)
+NOTE: The trap frame does not contain all registers.
+Some register values may be zeroed or incorrect.
+rax=000000000f0c0000 rbx=0000000000000000 rcx=000000000000001d
+rdx=ffff970df73d6748 rsi=0000000000000000 rdi=0000000000000000
+rip=fffff8004943d8df rsp=ffff9509884db548 rbp=0000000000000071
+ r8=0000000000000000  r9=0000000000000000 r10=0000000000000000
+r11=ffff970df73e8e68 r12=0000000000000000 r13=0000000000000000
+r14=0000000000000000 r15=0000000000000000
+iopl=0         nv up ei pl nz ac po cy
+nt!RtlRbRemoveNode+0x1b24df:
+fffff800`4943d8df cd29            int     29h
+Resetting default scope
+
+EXCEPTION_RECORD:  ffff9509884db308 -- (.exr 0xffff9509884db308)
+ExceptionAddress: fffff8004943d8df (nt!RtlRbRemoveNode+0x00000000001b24df)
+   ExceptionCode: c0000409 (Security check failure or stack buffer overrun)
+  ExceptionFlags: 00000001
+NumberParameters: 1
+   Parameter[0]: 000000000000001d
+Subcode: 0x1d FAST_FAIL_INVALID_BALANCED_TREE
+
+PROCESS_NAME:  System
+
+ERROR_CODE: (NTSTATUS) 0xc0000409 - A rendszer veremalap  gyors t t r-t lcsordul st  szlelt az alkalmaz sban, amely lehet v  teheti, hogy egy rosszindulat  felhaszn l   tvegye az ir ny t s t.
+
+EXCEPTION_CODE_STR:  c0000409
+
+EXCEPTION_PARAMETER1:  000000000000001d
+
+EXCEPTION_STR:  0xc0000409
+
+STACK_TEXT:  
+ffff9509`884da8d8 fffff800`49512b12 : ffff9509`884daa40 fffff800`4937d200 00000000`00000100 00000000`00000000 : nt!DbgBreakPointWithStatus
+ffff9509`884da8e0 fffff800`495120f6 : 00000000`00000003 ffff9509`884daa40 fffff800`4940c0c0 00000000`00000139 : nt!KiBugCheckDebugBreak+0x12
+ffff9509`884da940 fffff800`493f72c7 : ffffffff`ffffffff 00000000`00000000 ffff970d`e1002290 00000000`00000100 : nt!KeBugCheck2+0x946
+ffff9509`884db050 fffff800`49409169 : 00000000`00000139 00000000`0000001d ffff9509`884db3b0 ffff9509`884db308 : nt!KeBugCheckEx+0x107
+ffff9509`884db090 fffff800`49409590 : 00000000`00000001 ffffffff`ffffffff 00000000`00400201 ffff970d`f4ed5010 : nt!KiBugCheckDispatch+0x69
+ffff9509`884db1d0 fffff800`49407923 : ffff9509`00000001 ffff970d`f3b13cc8 00000400`00000002 fffff800`00000001 : nt!KiFastFailDispatch+0xd0
+ffff9509`884db3b0 fffff800`4943d8df : 00000071`00180000 00010000`00710000 fffff800`4928b293 00000000`00000071 : nt!KiRaiseSecurityCheckFailure+0x323
+ffff9509`884db548 fffff800`4928b293 : 00000000`00000071 ffff970d`f73d6030 00000000`00000000 ffff970d`f73d6740 : nt!RtlRbRemoveNode+0x1b24df
+ffff9509`884db560 fffff800`4928ac08 : ffff970d`e1002280 ffff970d`f73d6000 ffff970d`e1002280 ffff9509`884db668 : nt!RtlpHpVsChunkCoalesce+0x183
+ffff9509`884db5c0 fffff800`49289594 : 00000000`00000000 ffff970d`00000000 00000000`00000000 ffff970d`00000000 : nt!RtlpHpVsContextFree+0x188
+ffff9509`884db660 fffff800`499b2149 : 00000000`00000250 ffff9509`884db820 00000000`00000000 01000000`00100000 : nt!ExFreeHeapPool+0x4d4
+ffff9509`884db740 fffff800`492c669e : 00000000`00000000 ffff9509`884db820 ffffffff`ffffffff ffff9509`884db820 : nt!ExFreePool+0x9
+ffff9509`884db770 fffff800`492bff19 : 00000000`00000000 ffff9509`884db839 ffff970d`ef314ee0 ffff970d`f30b7010 : nt!CcDeleteSharedCacheMap+0x222
+ffff9509`884db7c0 fffff800`492c54c5 : ffff970d`ed495f70 00000000`00000000 ffff970d`e170db00 ffff970d`00000000 : nt!CcWriteBehindInternal+0x389
+ffff9509`884db8a0 fffff800`492c72f1 : ffff970d`f34df040 ffff970d`e17353d0 ffff970d`ed495f70 00000000`00000000 : nt!CcWriteBehind+0x91
+ffff9509`884db990 fffff800`492b8515 : ffff970d`f34df040 ffff970d`e16ada20 ffff970d`e17353d0 00000000`00000300 : nt!CcCachemapUninitWorkerThread+0xf1
+ffff9509`884dba70 fffff800`49355855 : ffff970d`f34df040 00000000`00000080 ffff970d`e16d4080 000fa46f`b19bbfff : nt!ExpWorkerThread+0x105
+ffff9509`884dbb10 fffff800`493fe818 : ffffa881`9dd80180 ffff970d`f34df040 fffff800`49355800 ffffffff`ffffffff : nt!PspSystemThreadStartup+0x55
+ffff9509`884dbb60 00000000`00000000 : ffff9509`884dc000 ffff9509`884d5000 00000000`00000000 00000000`00000000 : nt!KiStartSystemThread+0x28
+
+
+SYMBOL_NAME:  nt!ExFreePool+9
+
+IMAGE_NAME:  Pool_Corruption
+
+MODULE_NAME: Pool_Corruption
+
+STACK_COMMAND:  .thread ; .cxr ; kb
+
+BUCKET_ID_FUNC_OFFSET:  9
+
+FAILURE_BUCKET_ID:  0x139_1d_INVALID_BALANCED_TREE_nt!ExFreePool
+
+OS_VERSION:  10.0.19041.1
+
+BUILDLAB_STR:  vb_release
+
+OSPLATFORM_TYPE:  x64
+
+OSNAME:  Windows 10
+
+FAILURE_ID_HASH:  {ab43366d-59cb-5971-8e17-b53398bf3f90}
+
+Followup:     Pool_corruption
+---------
+
