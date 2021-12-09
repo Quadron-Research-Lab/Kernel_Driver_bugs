@@ -1,0 +1,162 @@
+2: kd> !analyze -v
+*******************************************************************************
+*                                                                             *
+*                        Bugcheck Analysis                                    *
+*                                                                             *
+*******************************************************************************
+
+PAGE_FAULT_IN_NONPAGED_AREA (50)
+Invalid system memory was referenced.  This cannot be protected by try-except.
+Typically the address is just plain bad or it is pointing at freed memory.
+Arguments:
+Arg1: ffff898b06353000, memory referenced.
+Arg2: 0000000000000000, value 0 = read operation, 1 = write operation.
+Arg3: fffff80268ae358a, If non-zero, the instruction address which referenced the bad memory
+	address.
+Arg4: 0000000000000002, (reserved)
+
+Debugging Details:
+------------------
+
+KEY_VALUES_STRING: 1
+
+    Key  : Analysis.CPU.Sec
+    Value: 0
+
+    Key  : Analysis.DebugAnalysisProvider.CPP
+    Value: Create: 8007007e on LAPTOP-MM2MIQK1
+
+    Key  : Analysis.DebugData
+    Value: CreateObject
+
+    Key  : Analysis.DebugModel
+    Value: CreateObject
+
+    Key  : Analysis.Elapsed.Sec
+    Value: 0
+
+    Key  : Analysis.Memory.CommitPeak.Mb
+    Value: 56
+
+    Key  : Analysis.System
+    Value: CreateObject
+
+
+ADDITIONAL_DEBUG_TEXT:  
+You can run '.symfix; .reload' to try to fix the symbol path and load symbols.
+
+WRONG_SYMBOLS_TIMESTAMP: f0572342
+
+WRONG_SYMBOLS_SIZE: 1046000
+
+FAULTING_MODULE: fffff80250c00000 nt
+
+BUGCHECK_CODE:  50
+
+BUGCHECK_P1: ffff898b06353000
+
+BUGCHECK_P2: 0
+
+BUGCHECK_P3: fffff80268ae358a
+
+BUGCHECK_P4: 2
+
+READ_ADDRESS: *************************************************************************
+***                                                                   ***
+***                                                                   ***
+***    Either you specified an unqualified symbol, or your debugger   ***
+***    doesn't have full symbol information.  Unqualified symbol      ***
+***    resolution is turned off by default. Please either specify a   ***
+***    fully qualified symbol module!symbolname, or enable resolution ***
+***    of unqualified symbols by typing ".symopt- 100". Note that     ***
+***    enabling unqualified symbol resolution with network symbol     ***
+***    server shares in the symbol path may cause the debugger to     ***
+***    appear to hang for long periods of time when an incorrect      ***
+***    symbol name is typed or the network symbol server is down.     ***
+***                                                                   ***
+***    For some commands to work properly, your symbol path           ***
+***    must point to .pdb files that have full type information.      ***
+***                                                                   ***
+***    Certain .pdb files (such as the public OS symbols) do not      ***
+***    contain the required information.  Contact the group that      ***
+***    provided you with these symbols if you need this command to    ***
+***    work.                                                          ***
+***                                                                   ***
+***    Type referenced: nt!_MMPTE                                     ***
+***                                                                   ***
+*************************************************************************
+Unable to get size of nt!_MMPTE - probably bad symbols
+ ffff898b06353000 
+
+MM_INTERNAL_CODE:  2
+
+STACK_TEXT:  
+ffff810e`6afb5a38 fffff802`51112bc2 : ffff810e`6afb5ba0 fffff802`50f7d200 fffff802`68ae0000 00000000`00000000 : nt!DbgBreakPointWithStatus
+ffff810e`6afb5a40 fffff802`511121a6 : fffff802`00000003 ffff810e`6afb5ba0 fffff802`5100c210 ffff810e`6afb60f0 : nt!KeEnterKernelDebugger+0x412
+ffff810e`6afb5aa0 fffff802`50ff73a7 : 00000000`00000000 00000000`00000000 ffff898b`06353000 ffff898b`06353000 : nt!KeAcquireSpinLockRaiseToSynch+0xc06
+ffff810e`6afb61b0 fffff802`5104a56f : 00000000`00000050 ffff898b`06353000 00000000`00000000 ffff810e`6afb6490 : nt!KeBugCheckEx+0x107
+ffff810e`6afb61f0 fffff802`50e9f390 : ffff810e`6afb6380 00000000`00000000 ffff810e`6afb6510 00000000`00000000 : nt!memset+0x400ef
+ffff810e`6afb62f0 fffff802`5100545e : ffff898b`06400100 00000000`00000019 ffff898b`06300740 fffff802`50e56e0b : nt!SeAccessCheckWithHint+0x3710
+ffff810e`6afb6490 fffff802`68ae358a : ffff898b`1c845570 00000000`00000000 fffff802`68ae6440 fffff802`68ae3451 : nt!setjmpex+0x446e
+ffff810e`6afb6620 fffff802`68ae370a : 00000000`00000000 fffff802`68ae6440 ffff898b`1ccc5000 fffff802`68ae34e0 : AscRegistryFilter+0x358a
+ffff810e`6afb6650 fffff802`68ae1808 : 00000000`00000000 00000000`00000000 00000000`00000000 fffff802`00000000 : AscRegistryFilter+0x370a
+ffff810e`6afb66a0 fffff802`50e8f6f5 : ffff898b`1c845570 00000000`00000000 00000000`00000002 00000000`00000001 : AscRegistryFilter+0x1808
+ffff810e`6afb6700 fffff802`51275a68 : ffff810e`6afb6a80 ffff898b`1c845570 00000000`00000001 ffff898b`15a50080 : nt!IofCallDriver+0x55
+ffff810e`6afb6740 fffff802`51275335 : 00000000`8001e048 ffff810e`6afb6a80 00000000`00000000 ffff810e`6afb6a80 : nt!NtDeviceIoControlFile+0xd88
+ffff810e`6afb67e0 fffff802`51274d36 : 00000000`0383c000 00000000`00000000 00000000`00000000 00000000`00000000 : nt!NtDeviceIoControlFile+0x655
+ffff810e`6afb6920 fffff802`51008cb5 : 00000000`00000000 00000000`00000000 00000000`00000000 00000000`005ee918 : nt!NtDeviceIoControlFile+0x56
+ffff810e`6afb6990 00007ff9`521ece54 : 00007ff9`4fdcb04b 00000000`00000003 00000000`00000000 00000000`035335f8 : nt!setjmpex+0x7cc5
+00000000`005ee798 00007ff9`4fdcb04b : 00000000`00000003 00000000`00000000 00000000`035335f8 00000000`035fc7b0 : ntdll!NtDeviceIoControlFile+0x14
+00000000`005ee7a0 00000000`00000003 : 00000000`00000000 00000000`035335f8 00000000`035fc7b0 00000000`005ee7f0 : KERNELBASE!DeviceIoControl+0x6b
+00000000`005ee7a8 00000000`00000000 : 00000000`035335f8 00000000`035fc7b0 00000000`005ee7f0 00000000`8001e048 : 0x3
+
+
+MODULE_NAME: nt_wrong_symbols
+
+STACK_COMMAND:  .thread ; .cxr ; kb
+
+EXCEPTION_CODE_STR:  F0572342
+
+EXCEPTION_STR:  WRONG_SYMBOLS
+
+PROCESS_NAME:  ntoskrnl.wrong.symbols.exe
+
+IMAGE_NAME:  ntoskrnl.wrong.symbols.exe
+
+SYMBOL_NAME:  nt_wrong_symbols!F05723421046000
+
+FAILURE_BUCKET_ID:  WRONG_SYMBOLS_X64_19041.1.amd64fre.vb_release.191206-1406_TIMESTAMP_971010-112138_F0572342_nt_wrong_symbols!F05723421046000
+
+OS_VERSION:  10.0.19041.1
+
+BUILDLAB_STR:  vb_release
+
+OSPLATFORM_TYPE:  x64
+
+OSNAME:  Windows 10
+
+FAILURE_ID_HASH:  {21150415-37c2-499c-5cbd-b6d2111898a4}
+
+Followup:     MachineOwner
+---------
+
+2: kd> kb
+ # RetAddr           : Args to Child                                                           : Call Site
+00 fffff802`51112bc2 : ffff810e`6afb5ba0 fffff802`50f7d200 fffff802`68ae0000 00000000`00000000 : nt!DbgBreakPointWithStatus
+01 fffff802`511121a6 : fffff802`00000003 ffff810e`6afb5ba0 fffff802`5100c210 ffff810e`6afb60f0 : nt!KeEnterKernelDebugger+0x412
+02 fffff802`50ff73a7 : 00000000`00000000 00000000`00000000 ffff898b`06353000 ffff898b`06353000 : nt!KeAcquireSpinLockRaiseToSynch+0xc06
+03 fffff802`5104a56f : 00000000`00000050 ffff898b`06353000 00000000`00000000 ffff810e`6afb6490 : nt!KeBugCheckEx+0x107
+04 fffff802`50e9f390 : ffff810e`6afb6380 00000000`00000000 ffff810e`6afb6510 00000000`00000000 : nt!memset+0x400ef
+05 fffff802`5100545e : ffff898b`06400100 00000000`00000019 ffff898b`06300740 fffff802`50e56e0b : nt!SeAccessCheckWithHint+0x3710
+06 fffff802`68ae358a : ffff898b`1c845570 00000000`00000000 fffff802`68ae6440 fffff802`68ae3451 : nt!setjmpex+0x446e
+07 fffff802`68ae370a : 00000000`00000000 fffff802`68ae6440 ffff898b`1ccc5000 fffff802`68ae34e0 : AscRegistryFilter+0x358a
+08 fffff802`68ae1808 : 00000000`00000000 00000000`00000000 00000000`00000000 fffff802`00000000 : AscRegistryFilter+0x370a
+09 fffff802`50e8f6f5 : ffff898b`1c845570 00000000`00000000 00000000`00000002 00000000`00000001 : AscRegistryFilter+0x1808
+0a fffff802`51275a68 : ffff810e`6afb6a80 ffff898b`1c845570 00000000`00000001 ffff898b`15a50080 : nt!IofCallDriver+0x55
+0b fffff802`51275335 : 00000000`8001e048 ffff810e`6afb6a80 00000000`00000000 ffff810e`6afb6a80 : nt!NtDeviceIoControlFile+0xd88
+0c fffff802`51274d36 : 00000000`0383c000 00000000`00000000 00000000`00000000 00000000`00000000 : nt!NtDeviceIoControlFile+0x655
+0d fffff802`51008cb5 : 00000000`00000000 00000000`00000000 00000000`00000000 00000000`005ee918 : nt!NtDeviceIoControlFile+0x56
+0e 00007ff9`521ece54 : 00007ff9`4fdcb04b 00000000`00000003 00000000`00000000 00000000`035335f8 : nt!setjmpex+0x7cc5
+0f 00007ff9`4fdcb04b : 00000000`00000003 00000000`00000000 00000000`035335f8 00000000`035fc7b0 : ntdll!NtDeviceIoControlFile+0x14
+10 00000000`00000003 : 00000000`00000000 00000000`035335f8 00000000`035fc7b0 00000000`005ee7f0 : KERNELBASE!DeviceIoControl+0x6b
+11 00000000`00000000 : 00000000`035335f8 00000000`035fc7b0 00000000`005ee7f0 00000000`8001e048 : 0x3
